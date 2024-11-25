@@ -17,7 +17,11 @@ jobs:
     # install repository
     - name: Checkout Code
       uses: actions/checkout@v3
-
+      
+    # grant permission
+    - name: Set execute permission for Gradle wrapper
+      run : chmod +x gradlew
+    
     # Set up JDK
     - name: Set up JDK
       uses: actions/setup-java@v3

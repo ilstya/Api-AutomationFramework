@@ -32,7 +32,7 @@ jobs:
 
     #install browser
     - name: Setup Chrome
-      uses: browser-actions/setup-chrome@v0.0.0
+      uses: browser-actions/setup-chrome@v131.0.6778.86
 
     #setup gradew
     - name: Setup gradlew

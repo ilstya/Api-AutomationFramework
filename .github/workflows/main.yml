@@ -33,7 +33,7 @@ jobs:
     - name: Install ChromeDriver
       uses: actions/setup-chromedriver@v3
       with:
-      version: '131.0.6778.86' # Pastikan ini sesuai dengan versi Chrome Anda
+        version: '131.0.6778.86' # Pastikan ini sesuai dengan versi Chrome Anda
 
     # Set up ChromeDriver path
     - name: Set ChromeDriver Path

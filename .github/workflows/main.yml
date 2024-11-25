@@ -37,7 +37,7 @@ jobs:
 
     # Set up ChromeDriver path
     - name: Set ChromeDriver Path
-      run: echo "::add-path::$(which chromedriver)"
+      run: echo "/usr/bin/chromedriver" >> $GITHUB_PATH
 
     #setup gradle
     - name: execute with gradle

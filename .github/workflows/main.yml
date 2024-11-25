@@ -1,0 +1,72 @@
+name: API and UI Automation Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  api-tests:
+    name: Run API Tests
+    runs-on: ubuntu-latest
+
+    steps:
+    # install repository
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    # Set up JDK
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin' 
+        java-version: '17'     
+        
+    # Install dependencies and run API tests
+    - name: Run API Tests
+      run: |
+        ./gradlew clean test -PtestType=API
+
+    # Upload API test results
+    - name: Upload API Test Results
+      uses: actions/upload-artifact@v3
+      with:
+        name: api-test-results
+        path: build/reports/tests/test
+
+  ui-tests:
+    name: Run UI Web Tests
+    runs-on: ubuntu-latest
+
+    services:
+      selenium-hub:
+        image: selenium/standalone-chrome:latest # run Selenium with Chrome
+        ports:
+          - 4444:4444
+
+    steps:
+    # insatll repository code
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    # Set up JDK
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    # Install dependencies and run UI tests
+    - name: Run UI Tests
+      run: |
+        ./gradlew clean test -PtestType=UI
+
+    # Upload UI test results as artifacts
+    - name: Upload UI Test Results
+      uses: actions/upload-artifact@v3
+      with:
+        name: ui-test-results
+        path: build/reports/tests/test

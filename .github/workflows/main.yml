@@ -29,8 +29,10 @@ jobs:
         distribution: 'temurin' 
         java-version: '17'
 
-    - name: Install Chrome
-      run : sudo apt-get install -y google-chrome-stable
+    - name: Chrome/Chromedriver Matcher Action
+  # You may pin to the exact commit or the version.
+  # uses: jamesmortensen/chromedriver-matcher-action@eb68765c00f09dc3b9e7621fc80cfc79a3c14cec
+      uses: jamesmortensen/chromedriver-matcher-action@v1.0.1
         
     # Install dependencies and run API tests
     - name: Run API Tests

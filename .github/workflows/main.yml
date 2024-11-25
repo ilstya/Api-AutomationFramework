@@ -30,7 +30,7 @@ jobs:
 
     #install browser
     - name: Install Chrome and ChromeDriver
-      uses: browser-action/setup-chrome@v3
+      uses: browser-actions/setup-chrome@v131
       with:
           chrome-version: stable
         

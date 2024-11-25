@@ -38,7 +38,7 @@ public class LoginSteps {
     @Then("I should see the products page")
     public void iShouldSeeTheProductsPage() {
         assertEquals("https://www.saucedemo.com/inventory.html", driver.getCurrentUrl());
-        driver.quit();
+
     }
 
     @When("I enter invalid credentials")
@@ -51,7 +51,7 @@ public class LoginSteps {
     @Then("I should see an error message")
     public void iShouldSeeAnErrorMessage() {
         assertTrue(driver.getPageSource().contains("Epic sadface"));
-        driver.quit();
+
     }
 
     @When("I leave the fields empty")

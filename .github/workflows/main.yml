@@ -28,11 +28,16 @@ jobs:
         java-version: '23'
         distribution: 'temurin'
 
-    #install browser
-    - name: Setup Chrome with extra capabilities
-      uses: browser-actions/setup-chrome@v1.4.0
-      with: 
-        chrome-version: latest
+  #install browser
+      # Install ChromeDriver
+    - name: Install ChromeDriver
+      uses: actions/setup-chromedriver@v3
+      with:
+      version: '131.0.6778.86' # Pastikan ini sesuai dengan versi Chrome Anda
+
+    # Set up ChromeDriver path
+    - name: Set ChromeDriver Path
+      run: echo "::add-path::$(which chromedriver)"
 
     #setup gradle
     - name: execute with gradle

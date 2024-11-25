@@ -37,7 +37,6 @@ jobs:
     #setup gradle
     - name: execute with gradle
       run: chmod +x gradlew
-           echo "D:\JAYJAY\AUTO API\tugas19new\src\test\resources\chromedriver-win64\" >> $GITHUB_PATH
           
     #exceute gradlew command for running cucumber test
     - name: Run Test

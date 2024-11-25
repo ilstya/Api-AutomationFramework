@@ -18,6 +18,7 @@ public class LoginSteps {
 
     @Given("I am on the login page")
     public void iAmOnTheLoginPage() {
+        System.setProperty("webdriver.chrome.driver","D:\\JAYJAY\\AUTO API\\tugas19new\\src\\test\\resources\\drivers\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com/");
         loginPage = new LoginPage(driver);

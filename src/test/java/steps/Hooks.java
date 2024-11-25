@@ -14,7 +14,7 @@ public class Hooks {
     @Before
     public void setUp() {
         // Tentukan lokasi driver
-        System.setProperty("webdriver.chrome.driver", "C:\\Learning\\chromedriver-win64\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "D:\\JAYJAY\\AUTO API\\tugas19new\\src\\test\\resources\\chromedriver-win64\\chromedriver.exe");
 
         // Inisialisasi WebDriver
         driver = new ChromeDriver();

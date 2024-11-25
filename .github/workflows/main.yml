@@ -37,7 +37,7 @@ jobs:
 
     # Set up ChromeDriver path
     - name: Set ChromeDriver Path
-      run: echo "/usr/bin/chromedriver" >> $GITHUB_PATH
+      run: echo "D:\JAYJAY\AUTO API\tugas19new\src\test\resources\chromedriver-win64" >> $GITHUB_PATH
 
     #setup gradle
     - name: execute with gradle

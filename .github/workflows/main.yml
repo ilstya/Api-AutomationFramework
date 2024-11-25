@@ -32,7 +32,7 @@ jobs:
     # Install dependencies and run API tests
     - name: Run API Tests
       run: |
-        ./gradlew clean test -PtestType=API
+        ./gradlew test
 
     # Upload API test results
     - name: Upload API Test Results
@@ -56,6 +56,10 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v3
 
+    # grant permission
+    - name: Set execute permission for Gradle wrapper
+      run : chmod +x gradlew
+
     # Set up JDK
     - name: Set up JDK
       uses: actions/setup-java@v3
@@ -66,7 +70,7 @@ jobs:
     # Install dependencies and run UI tests
     - name: Run UI Tests
       run: |
-        ./gradlew clean test -PtestType=UI
+        ./gradlew test
 
     # Upload UI test results as artifacts
     - name: Upload UI Test Results

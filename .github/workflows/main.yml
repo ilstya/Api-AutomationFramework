@@ -34,10 +34,11 @@ jobs:
       with: 
         chrome-version: latest
 
-    #setup gradew
+    #setup gradle
     - name: Build with gradle
-      run:  chmod +x gradlew
-        ./gradlew build
+      run:  
+          chmod +x gradlew
+          ./gradlew build
 
     #exceute gradlew command for running cucumber test
     - name: Run Test

@@ -1,20 +1,25 @@
-name: Automation API and web UI
+name: Run JunitCI
 
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 
 jobs:
-  set-up_automation_test:
+  automationJunit:
 
     runs-on: ubuntu-latest
 
     steps:
     # download reepository
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v3
 
     #setup java
     - name: Set up JDK 23
@@ -24,13 +29,22 @@ jobs:
         distribution: 'temurin'
 
     #install browser
-    - name: Setup Chrome
+    - name: Setup Chrome with extra capabilities
       uses: browser-actions/setup-chrome@v0.0.0
+      with: chrome version stable
 
     #setup gradew
-    - name: Setup gradlew
+    - name: Build with gradle
       run:  chmod +x gradlew
+        ./gradlew build
 
     #exceute gradlew command for running cucumber test
-    - name: Execute Test
-      run: ./gradlew test
+    - name: Run Test
+      run: ./gradlew clean test
+
+    - name: archive test results
+      uses: actions/upload-artifact@4.3.0
+      if: always()
+      with:
+        name: cucumber reports
+        path: target/cucumber-reports.html

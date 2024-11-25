@@ -19,7 +19,7 @@ jobs:
 
     steps:
     # download reepository
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v3
 
     #setup java
     - name: Set up JDK 23
@@ -30,7 +30,7 @@ jobs:
 
     #install browser
     - name: Install Chrome and ChromeDriver
-      uses: browser-action/setup-chrome@v4
+      uses: browser-action/setup-chrome@v3
       with:
           chrome-version: stable
         

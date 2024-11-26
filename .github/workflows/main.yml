@@ -45,6 +45,10 @@ jobs:
       - name: Install Chrome
         run: sudo apt-get install -y google-chrome-stable
 
+      #permission gradle
+      - name: execute with gradle
+        run: chmod +x gradlew
+      
       # Step 6: Verify Gradle build
       - name: Build with Gradle
         run: ./gradlew build

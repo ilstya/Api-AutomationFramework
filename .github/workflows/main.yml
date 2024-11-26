@@ -36,8 +36,8 @@ jobs:
             ${{ runner.os }}-gradle-
 
       # Step 4: Download and install ChromeDriver
-      - name: Setup ChromeDriver
-        uses: nanasess/setup-chromedriver@v1
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
         with:
           version: latest
 

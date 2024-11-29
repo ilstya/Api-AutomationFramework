@@ -34,15 +34,12 @@ jobs:
     - name: Install dependencies
       run: ./gradlew dependencies
 
-    # Step 5: Run API tests
-    - name: Run API tests
-      run: ./gradlew :api-tests:test
-
     # Step 6: Install Google Chrome and ChromeDriver for UI tests
     - name: Install Google Chrome
       run: |
         sudo apt-get update
         sudo apt-get install -y google-chrome-stable
+        
     - name: Install ChromeDriver
       run: |
         CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | awk -F '.' '{print $1}')
@@ -52,26 +49,15 @@ jobs:
         sudo mv -f ~/chromedriver /usr/local/bin/chromedriver
         sudo chmod 0755 /usr/local/bin/chromedriver
 
-    # Step 7: Run Web UI tests
-    - name: Run Web UI tests
-      run: ./gradlew :web-ui-tests:test
+    # Step 7: Run  tests
+    - name: Run tests
+      run: ./gradlew clean test
 
     # Step 8: Upload test reports as artifacts
-    - name: Upload API test reports
-      uses: actions/upload-artifact@v3
-      with:
-        name: api-test-reports
-        path: api-tests/build/reports/tests/test/
-
-    - name: Upload Web UI test reports
-      uses: actions/upload-artifact@v3
-      with:
-        name: web-ui-test-reports
-        path: web-ui-tests/build/reports/tests/test/
-
-    # Step 9: Clean up Docker
-    - name: Stop and remove Docker container
+    - name: archive test results
+      uses: actions/upload-artifact@v4.3.0
       if: always()
-      run: |
-        docker stop api-mock-server
-        docker rm api-mock-server
+      with:
+        name: cucumber reports
+        path: target/cucumber-reports.html
+

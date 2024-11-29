@@ -32,14 +32,18 @@ jobs:
         sudo apt-get install -y google-chrome-stable
 
     # Step 4: Set up ChromeDriver
-    - name: Set up ChromeDriver
-      run: |
-        CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | awk -F '.' '{print $1}')
-        DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
-        wget -N "https://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip" -P ~/
-        unzip ~/chromedriver_linux64.zip -d ~/
-        sudo mv -f ~/chromedriver /usr/local/bin/chromedriver
-        sudo chmod 0755 /usr/local/bin/chromedriver
+    - name: Setup Chrome
+     # uses: browser-actions/setup-chrome@facf10a55b9caf92e0cc749b4f82bf8220989148
+      uses: browser-actions/setup-chrome@v1.7.2
+      with:
+    # The Google Chrome/Chromium version to install and use.
+        chrome-version: latest # optional, default is latest
+    # Install dependent packages for Google Chrome/Chromium (Linux only).
+        install-dependencies: optional
+    # Install the compatible version of ChromeDriver with the installed Google Chrome/Chromium.
+        install-chromedriver: optional
+    # Do not use sudo to install Google Chrome/Chromium (Linux only).
+        no-sudo: optional
 
     # Step 5: Set ChromeDriver path
     - name: Set ChromeDriver path

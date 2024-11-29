@@ -47,7 +47,7 @@ jobs:
 
     # Step 5: Set ChromeDriver path
     - name: Set ChromeDriver path
-      run: echo "CHROMEDRIVER_PATH=/usr/local/bin/chromedriver" >> $GITHUB_ENV
+      run: echo "CHROMEDRIVER_PATH=C:\Learning\chromedriver-win64\chromedriver.exe" >> $GITHUB_ENV
 
     - name: execute with gradle
       run: chmod +x gradlew

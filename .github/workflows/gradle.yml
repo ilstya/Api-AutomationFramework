@@ -41,13 +41,17 @@ jobs:
         sudo apt-get install -y google-chrome-stable
         
     - name: Install ChromeDriver
+      uses: browser-actions/setup-chrome@v0.0.0
+      with:
+    # The Google Chrome/Chromium version to install and use.
+        chrome-version: latest
+
+    - name: Debug Chrome and ChromeDriver versions
       run: |
-        CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | awk -F '.' '{print $1}')
-        DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
-        wget -N "https://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip" -P ~/
-        unzip ~/chromedriver_linux64.zip -d ~/
-        sudo mv -f ~/chromedriver /usr/local/bin/chromedriver
-        sudo chmod 0755 /usr/local/bin/chromedriver
+        echo "Google Chrome version:"
+        google-chrome --version
+        echo "ChromeDriver version:"
+        chromedriver --version || echo "ChromeDriver not found"
 
     # Step 7: Run  tests
     - name: Run tests
